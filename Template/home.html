@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block blockname %}
+
+<!-- Top Header Section -->
+<div style="
+    padding: 30px;
+    background: linear-gradient(135deg, #4a90e2, #003f7f);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+">
+    <h1 style="font-size: 36px; font-weight: bold; margin-bottom: 10px;">
+        Welcome to NUB Study Lab
+    </h1>
+    <p style="font-size: 18px; margin-top: 10px;">
+        Empowering Learning with E-Library, Online Modules, and Lessons.<br>
+        Northern University Bangladesh - Your partner in academic success!
+    </p>
+
+    
+</div>
+
+<!-- Full Image Section -->
+<div style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 40px 0;
+">
+    <img 
+        src="{% static 'images/CampusImage.png' %}" 
+        alt="Campus Image" 
+        style="
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        "
+    >
+</div>
+
+<!-- Footer -->
+<footer style="
+    background-color: #003f7f;
+    color: #f0f0f0;
+    padding: 40px 20px;
+    margin-top: 50px;
+">
+
+    <!-- About Study Lab Section (Moved to top of Footer) -->
+    <div style="max-width: 1200px; margin: 0 auto 30px auto; text-align: center; padding-bottom: 20px; border-bottom: 1px solid #00509e;">
+        <h3>About Study Lab</h3>
+        <p style="max-width: 800px; margin: 0 auto;">
+            Study Lab is an innovative platform designed to enhance your learning experience. With our integrated tools like the E-Library, online modules, and lessons, students and educators can collaborate and explore new horizons of knowledge. Discover a seamless blend of modern education and accessibility right at your fingertips.
+        </p>
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+
+        <!-- About NUB Section -->
+        <div style="flex: 1 1 300px; margin-bottom: 30px;">
+            <h3 style="color: #00eaff; margin-bottom: 15px;">About NUB</h3>
+            <p>
+                Northern University Bangladesh (NUB) is a leading private university located in Dhaka, committed to academic
+                excellence and innovation.
+            </p>
+        </div>
+
+        <!-- Contact Section -->
+        <div style="flex: 1 1 300px; margin-bottom: 30px;">
+            <h3 style="color: #00eaff; margin-bottom: 15px;">Contact Us</h3>
+            <p>
+                Address: 111/2 Kawlar Jame Mosjid Road, Ashkona (Near Hajj Camp), Dakshinkhan, Dhaka-1230.
+            </p>
+            <p>
+                Phone: +88 02-9821493-7, 9898521.
+            </p>
+            <p>
+                Email: info@nub.ac.bd.
+            </p>
+        </div>
+
+        <!-- Social & Links Section -->
+        <div style="flex: 1 1 300px; margin-bottom: 30px;">
+            <h3 style="color: #00eaff; margin-bottom: 15px;">Stay Connected</h3>
+            <p style="margin-bottom: 10px;">
+                <a href="https://www.facebook.com/NUBDhaka/" target="_blank" style="color: #f0f0f0; text-decoration: none;">
+                    Facebook
+                </a>
+            </p>
+            <p>
+                <a href="https://nub.ac.bd/" target="_blank" style="color: #f0f0f0; text-decoration: none;">
+                    Official Website
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <div style="text-align: center; padding-top: 20px; border-top: 1px solid #00509e;">
+        <p style="margin: 0;">&copy; {{ now.year }} Northern University Bangladesh. All rights reserved.</p>
+    </div>
+
+</footer>
+
+{% endblock blockname %}

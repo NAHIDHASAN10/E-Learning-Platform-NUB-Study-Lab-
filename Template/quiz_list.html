@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block blockname %}
+
+<style>
+body {
+    font-family: "Poppins", sans-serif;
+    background: #eef3ff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Title */
+.quiz-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+/* Grid layout */
+.quiz-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0 20px 40px 20px;
+}
+
+/* Quiz Cards */
+.quiz-card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    text-align: center;
+    border-top: 4px solid #2563eb;
+    animation: fadeInUp 0.5s ease;
+}
+
+.quiz-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Quiz Title Inside Card */
+.quiz-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+/* Button */
+.quiz-btn {
+    padding: 10px 18px;
+    background: linear-gradient(45deg, #2563eb, #3b82f6);
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s ease;
+    box-shadow: 0px 5px 14px rgba(37,99,235,0.35);
+}
+
+.quiz-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 20px rgba(37,99,235,0.45);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .quiz-title {
+        font-size: 28px;
+    }
+}
+</style>
+
+
+<h1 class="quiz-title">Available Quizzes</h1>
+
+<div class="quiz-grid">
+    {% for quiz in quizzes %}
+        <div class="quiz-card">
+            <h3 class="quiz-name">{{ quiz.title }}</h3>
+            <a href="{% url 'take_quiz' quiz.id %}" class="quiz-btn">Take Quiz</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock blockname %}

@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% block blockname %}
+
+<style>
+/* --- Page Wrapper --- */
+.page-wrapper {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* --- Page Title --- */
+.page-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: #186faf;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* --- Add Button --- */
+.add-btn {
+    display: inline-block;
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0,123,255,0.3);
+}
+
+.add-btn:hover {
+    background: linear-gradient(45deg, #00c6ff, #007bff);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+}
+
+/* --- Search Box --- */
+.search-container {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.search-box {
+    padding: 8px 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* --- Table Container --- */
+.table-container {
+    margin-top: 15px;
+    overflow-x: auto;
+    border-radius: 12px;
+}
+
+/* --- Table Style --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+thead {
+    background: #186faf;
+}
+
+th {
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    font-size: 15px;
+    color: #333;
+}
+
+td.description {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Row styling */
+tr:nth-child(even) {
+    background-color: #f2f8ff;
+}
+
+tr:hover {
+    background: #dff2ff;
+    transition: 0.3s ease;
+}
+
+/* --- Action Buttons --- */
+.action-btn {
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    color: white;
+    margin: 2px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background-color: #28a745;
+}
+.edit-btn:hover {
+    background-color: #208a39;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+.delete-btn:hover {
+    background-color: #b02a37;
+    transform: scale(1.05);
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 28px;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .add-btn {
+        width: 100%;
+        text-align: center;
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .search-container {
+        justify-content: center;
+    }
+}
+</style>
+
+<div class="page-wrapper">
+
+    <!-- Page Title -->
+    <h1 class="page-title">Department List</h1>
+
+    <!-- Search Box -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search departments...">
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container">
+        <table id="departmentTable">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Department Name</th>
+                    <th>Description</th>
+                    <th>Faculty Type</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if department %}
+                    {% for i in department %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.department_name }}</td>
+                        <td class="description" title="{{ i.description }}">{{ i.description }}</td>
+                        <td>{{ i.faculty_type }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5">No departments available.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Search Script -->
+<script>
+    const searchInput = document.getElementById("searchInput");
+    const table = document.getElementById("departmentTable").getElementsByTagName("tbody")[0];
+
+    searchInput.addEventListener("keyup", function() {
+        const filter = searchInput.value.toLowerCase();
+        const rows = table.getElementsByTagName("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+            const nameTd = rows[i].getElementsByTagName("td")[1];
+            const typeTd = rows[i].getElementsByTagName("td")[3];
+
+            if (nameTd && typeTd) {
+                const nameText = nameTd.textContent.toLowerCase();
+                const typeText = typeTd.textContent.toLowerCase();
+                if (nameText.includes(filter) || typeText.includes(filter)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock blockname %}

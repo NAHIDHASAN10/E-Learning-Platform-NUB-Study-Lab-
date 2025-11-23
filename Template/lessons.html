@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block blockname %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lessons</title>
+
+  <style>
+    /* ------------------ Global ------------------ */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+
+    /* Header */
+    .lessons-header {
+      background-color: #1a73e8;
+      color: #fff;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .lessons-header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    /* Lessons container */
+    .lessons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      gap: 3rem;
+    }
+
+    /* Video Cards Grid */
+    .video-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    /* Video Card */
+    .video-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+    }
+
+    .video-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .video-card-content {
+      padding: 1rem;
+    }
+
+    .video-card-content h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .video-card-content p {
+      margin: 0;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    .lessons-footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      background-color: #eee;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Video Lightbox */
+    .video-lightbox {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      display: none;
+      padding: 1rem;
+    }
+
+    .video-lightbox iframe {
+      width: 80%;
+      height: 60%;
+      border: none;
+      border-radius: 12px;
+      max-width: 900px;
+    }
+
+    .video-lightbox.active {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .video-card {
+        width: 45%;
+      }
+
+      .video-lightbox iframe {
+        width: 95%;
+        height: 50%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .video-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="lessons-header">
+    <h1>Lessons</h1>
+  </header>
+
+  <main class="lessons-container">
+    <div class="video-cards">
+
+      <!-- Video Card Template -->
+      <div class="video-card" onclick="openVideo('eIrMbAQSU34')">
+        <img src="https://img.youtube.com/vi/eIrMbAQSU34/hqdefault.jpg" alt="Java Tutorial">
+        <div class="video-card-content">
+          <h2>Java Programming Tutorial</h2>
+          <p>Learn Java fundamentals with this complete guide.</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="openVideo('mEsleV16qdo')">
+        <img src="https://img.youtube.com/vi/mEsleV16qdo/hqdefault.jpg" alt="Python Full Course">
+        <div class="video-card-content">
+          <h2>Python Full Course</h2>
+          <p>Complete Python programming tutorial for beginners.</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="openVideo('K5KVEU3aaeQ')">
+        <img src="https://img.youtube.com/vi/K5KVEU3aaeQ/hqdefault.jpg" alt="React JS Course">
+        <div class="video-card-content">
+          <h2>React JS Course</h2>
+          <p>Learn modern React step by step with examples.</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="openVideo('CvCiNeLnZ00')">
+        <img src="https://img.youtube.com/vi/CvCiNeLnZ00/hqdefault.jpg" alt="JavaScript Tutorial">
+        <div class="video-card-content">
+          <h2>JavaScript Tutorial</h2>
+          <p>Start your JavaScript journey here with practical examples.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="lessons-footer">
+    <p>&copy; 2025 NUB Study Lab</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="videoLightbox" class="video-lightbox">
+    <span class="close-btn" onclick="closeVideo()">&times;</span>
+    <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function openVideo(videoId) {
+      document.getElementById('videoIframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      document.getElementById('videoLightbox').classList.add('active');
+    }
+
+    function closeVideo() {
+      document.getElementById('videoIframe').src = '';
+      document.getElementById('videoLightbox').classList.remove('active');
+    }
+  </script>
+
+</body>
+</html>
+
+{% endblock blockname %}

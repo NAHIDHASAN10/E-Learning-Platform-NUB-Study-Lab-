@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block blockname %}
+<style>
+
+/* ------------------------------------
+   GLOBAL STYLE
+------------------------------------ */
+body {
+    font-family: "Inter", "Segoe UI", Tahoma, sans-serif;
+    background: #f1f3f6;
+    padding: 20px;
+}
+
+/* ------------------------------------
+   PAGE HEADING
+------------------------------------ */
+h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* ------------------------------------
+   PROFILE CARD CONTAINER
+------------------------------------ */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ------------------------------------
+   PROFILE CARD
+------------------------------------ */
+.profile-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* ------------------------------------
+   PROFILE IMAGE
+------------------------------------ */
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid #4CAF50;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform .3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+/* ------------------------------------
+   PROFILE INFO TEXT AREA
+------------------------------------ */
+.profile-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    margin: 12px 0;
+    color: #444;
+}
+
+.profile-info span {
+    font-weight: 700;
+    color: #222;
+}
+
+/* ------------------------------------
+   BUTTON STYLE
+------------------------------------ */
+.update-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 24px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background .3s ease, transform .3s ease;
+}
+
+.update-btn:hover {
+    background: #3d8c40;
+    transform: translateY(-2px);
+}
+
+/* ------------------------------------
+   RESPONSIVE BEHAVIOR
+------------------------------------ */
+@media (max-width: 768px) {
+    .profile-card {
+        text-align: center;
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .profile-info p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-img {
+        width: 130px;
+        height: 130px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+}
+
+</style>
+
+<h2>User Profile</h2>
+
+<div class="profile-container">
+    <div class="profile-card">
+
+        <img src="{{ request.user.profile_info.profile_image.url }}"
+             alt="profile_image" 
+             class="profile-img">
+
+        <div class="profile-info">
+            <p><span>Full Name:</span> {{ request.user.profile_info.full_name }}</p>
+            <p><span>Phone Number:</span> {{ request.user.profile_info.phone }}</p>
+            <p><span>Biodata:</span> {{ request.user.profile_info.bio }}</p>
+
+            <a href="{% url 'update_profile' %}" class="update-btn">
+                ✏️ Update Profile
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock blockname %}

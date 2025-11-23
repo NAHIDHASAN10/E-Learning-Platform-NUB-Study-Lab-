@@ -1,0 +1,91 @@
+<style>
+/* Message Container */
+.message-box {
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 14px 18px;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease-out;
+    position: relative;
+}
+
+/* Close Button */
+.message-box .close-btn {
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+}
+
+/* Message Types */
+.success {
+    background: #16a34a;
+    box-shadow: 0 4px 12px rgba(22,163,74,0.3);
+}
+
+.error {
+    background: #dc2626;
+    box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+}
+
+.warning {
+    background: #d97706;
+    box-shadow: 0 4px 12px rgba(217,119,6,0.3);
+}
+
+.info {
+    background: #2563eb;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Auto dismiss fade-out */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+</style>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="message-box 
+            {% if message.tags == 'success' %} success 
+            {% elif message.tags == 'error' %} error 
+            {% elif message.tags == 'warning' %} warning 
+            {% else %} info 
+            {% endif %}" 
+            id="msg{{ forloop.counter }}">
+            
+            {{ message }}
+
+            <span class="close-btn" onclick="closeMsg('msg{{ forloop.counter }}')">✖</span>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<script>
+/* Close manually */
+function closeMsg(id) {
+    let box = document.getElementById(id);
+    box.classList.add("fade-out");
+    setTimeout(() => box.remove(), 800);
+}
+
+/* Auto-dismiss after 4 seconds */
+setTimeout(() => {
+    document.querySelectorAll('.message-box').forEach((msg) => {
+        msg.classList.add('fade-out');
+        setTimeout(() => msg.remove(), 800);
+    });
+}, 4000);
+</script>

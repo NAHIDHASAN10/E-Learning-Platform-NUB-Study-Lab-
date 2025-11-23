@@ -1,0 +1,9 @@
+<h2>Your Quiz History</h2>
+
+<ul>
+{% for a in attempts %}
+  <li>
+    {{ a.quiz.title }} — {{ a.percentage }}% ({{ a.completed_at }})
+  </li>
+{% endfor %}
+</ul>

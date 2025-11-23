@@ -1,0 +1,99 @@
+<body>
+<style>
+/* Background */
+body {
+    background: #eef5ff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form Wrapper */
+.form-container {
+    max-width: 480px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Title */
+.form-container h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #176bbb;
+    margin-bottom: 22px;
+    font-weight: 700;
+}
+
+/* Input Fields */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    border: 1px solid #c8d7e9;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: #176bbb;
+    box-shadow: 0 0 8px rgba(23,107,187,0.25);
+    outline: none;
+}
+
+/* Submit Button */
+.form-container button {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(45deg, #007bff, #1ac8ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+}
+
+.form-container button:hover {
+    background: linear-gradient(45deg, #1ac8ff, #007bff);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,123,255,0.45);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .form-container {
+        max-width: 90%;
+        padding: 25px;
+    }
+}
+</style>
+
+<div class="form-container">
+    <h2>Update Course Info</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ course_form.as_p }}
+        <button type="submit">Update Course</button>
+    </form>
+</div>
+
+</body>

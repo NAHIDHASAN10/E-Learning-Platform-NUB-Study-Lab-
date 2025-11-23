@@ -1,0 +1,130 @@
+<style>
+/* Page Layout */
+.quiz-container {
+    max-width: 850px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    font-family: "Poppins", sans-serif;
+}
+
+/* Title */
+.quiz-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 30px;
+}
+
+/* Question */
+.question-box {
+    background: #f1f5ff;
+    border-left: 5px solid #4f46e5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.question-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Options styling */
+.option {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4f46e5; /* Modern radio color */
+}
+
+/* Submit button */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(45deg, #4f46e5, #6366f1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(79,70,229,0.4);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Friendly */
+@media (max-width: 480px) {
+    .quiz-container {
+        padding: 25px;
+    }
+    .quiz-title {
+        font-size: 24px;
+    }
+    .question-text {
+        font-size: 16px;
+    }
+}
+</style>
+
+
+<div class="quiz-container">
+    <h1 class="quiz-title">{{ quiz.title }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for question in questions %}
+
+        <div class="question-box">
+            <p class="question-text">{{ forloop.counter }}. {{ question.question_text }}</p>
+
+            <label class="option">
+                <input type="radio" name="{{ question.id }}" value="{{ question.option1 }}">
+                {{ question.option1 }}
+            </label>
+
+            <label class="option">
+                <input type="radio" name="{{ question.id }}" value="{{ question.option2 }}">
+                {{ question.option2 }}
+            </label>
+
+            <label class="option">
+                <input type="radio" name="{{ question.id }}" value="{{ question.option3 }}">
+                {{ question.option3 }}
+            </label>
+
+            <label class="option">
+                <input type="radio" name="{{ question.id }}" value="{{ question.option4 }}">
+                {{ question.option4 }}
+            </label>
+        </div>
+
+        {% endfor %}
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>

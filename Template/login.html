@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ------------------ Global ------------------ */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ------------------ Form Container ------------------ */
+.signup-container {
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+/* Form Title */
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e3a8a;
+}
+
+/* Input Fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 14px 20px;
+  margin: 8px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  border-color: #1e3a8a;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Footer text */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.footer a {
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 400px) {
+  .signup-container {
+    padding: 30px 20px;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+
+{% include 'message.html' %}
+
+<div class="signup-container">
+  <h2>Log In</h2>
+  <form action="#" method="POST" class="signup-form">
+    {% csrf_token %}
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+    <button type="submit">Log In</button>
+
+    <div class="footer">
+      <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+      <a href="{% url 'password_reset' %}">Forgot Password</a>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

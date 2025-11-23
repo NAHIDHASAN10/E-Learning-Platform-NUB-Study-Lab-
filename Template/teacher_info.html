@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% block blockname %}
+
+<style>
+/* ------------------ Global --------------------- */
+body {
+    font-family: "Poppins", sans-serif !important;
+    background: #eef3fb;
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------ Main Section --------------------- */
+.faculty-section {
+    max-width: 1230px;
+    margin: auto;
+    padding: 50px 25px;
+}
+
+.title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    color: #1e2a47;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    animation: fadeInDown 0.7s ease-in-out;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #1e3a8a;
+    margin-bottom: 50px;
+}
+
+/* ------------------ Card Grid ------------------------ */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+}
+
+/* ------------------ Cards ----------------------------- */
+.card {
+    background: white;
+    padding: 30px 22px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #e3e8f1;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.7s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+/* Floating top highlight */
+.card::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 160px;
+    height: 160px;
+    background: rgba(30,58,138,0.1);
+    border-radius: 50%;
+    transition: 0.4s ease;
+}
+
+.card:hover::before {
+    transform: scale(1.4);
+    background: rgba(30,58,138,0.12);
+}
+
+/* ------------------ Profile Image --------------------- */
+.profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #e6ebf4;
+    margin-bottom: 18px;
+    transition: 0.3s;
+}
+
+.card:hover .profile-img {
+    transform: scale(1.06);
+}
+
+/* ------------------ Text Styling ----------------------- */
+.name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.designation {
+    font-size: 15px;
+    color: #555;
+}
+
+.dept {
+    font-size: 14px;
+    color: #666;
+}
+
+.sub-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 17px;
+}
+
+/* ------------------ Footer ----------------------------- */
+.footer {
+    background: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 18px 0;
+    margin-top: 60px;
+    font-size: 14px;
+}
+
+/* ------------------ Animations ------------------------- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<!-- Faculty Section -->
+<section class="faculty-section">
+  <h1 class="title">Department of CSE</h1>
+  <h2 class="subtitle">Faculty Information</h2>
+
+  <div class="card-container">
+
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="https://nub.ac.bd/assets/images/untitled%20folder%204/CSE%20NEW%20Member/fa61c108-0b33-4557-bb2a-ece9951d8d73.jpeg" class="profile-img">
+
+      <h2 class="name">Md. Raihan-ul Masood</h2>
+      <p class="designation">Associate Professor & Head</p>
+      <p class="dept">Department of CSE</p>
+
+      <h3 class="sub-title">Qualifications:</h3>
+      <p>M.Sc. in CS (Lamar University, USA)</p>
+      <p>B.Sc (Hons), Mechanical Engineering (BUET)</p>
+      <p><strong>Mobile:</strong> 01720497315</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="https://nub.ac.bd/assets/images/untitled%20folder%204/CSE%20NEW%20Member/NUB1007486_Muhammed%20Samsuddoha%20Alam_Associate%C2%A0Professor.jpg" class="profile-img">
+
+      <h2 class="name">Muhammed Samsuddoha Alam</h2>
+      <p class="designation">Associate Professor & Coordinator</p>
+      <p class="dept">Department of CSE</p>
+
+      <h3 class="sub-title">Qualifications:</h3>
+      <p>— Not publicly listed</p>
+      <p><strong>Mobile:</strong> 01676453189</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="https://nub.ac.bd/assets/images/pims/Syed%20Shahir%20Ahmed%20Rakin.jpg" class="profile-img">
+
+      <h2 class="name">Syed Shahir Ahmed Rakin</h2>
+      <p class="designation">Lecturer</p>
+      <p class="dept">Department of CSE</p>
+
+      <h3 class="sub-title">Qualifications:</h3>
+      <p>M.Sc. in Computer Science (NSU)</p>
+      <p>B.Sc. in Computer Science (NSU)</p>
+
+      <p><strong>Mobile:</strong> 01907245701</p>
+      <p><strong>Email:</strong>
+        <a href="mailto:jishan151297@gmail.com">jishan151297@gmail.com</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+{% endblock blockname %}

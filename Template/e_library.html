@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block blockname %}
+
+<style>
+/* ------------------ Global ------------------ */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Search bar */
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.search-btn {
+    padding: 12px 18px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Cards Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+/* Individual Card */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #1e3a8a;
+    font-weight: bold;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<div class="container">
+
+    <h1>E-Library</h1>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search tutorials...">
+        <button class="search-btn" onclick="searchCards()">Search</button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="card-grid" id="cardGrid">
+        <div class="card"><a href="https://www.w3schools.com/html/" target="_blank">HTML Tutorial</a></div>
+        <div class="card"><a href="https://www.w3schools.com/css/" target="_blank">CSS Tutorial</a></div>
+        <div class="card"><a href="https://www.w3schools.com/js/" target="_blank">JavaScript Tutorial</a></div>
+        <div class="card"><a href="https://www.w3schools.com/sql/" target="_blank">SQL Tutorial</a></div>
+        <div class="card"><a href="https://www.w3schools.com/java/default.asp" target="_blank">Java Tutorial</a></div>
+        <div class="card"><a href="https://www.w3schools.com/c/index.php" target="_blank">C Tutorial</a></div>
+        <div class="card"><a href="https://www.w3schools.com/cpp/default.asp" target="_blank">C++ Tutorial</a></div>
+        <div class="card"><a href="https://www.geeksforgeeks.org/explore?page=1&sortBy=submissions" target="_blank">GFG Explore (Top Submissions)</a></div>
+        <div class="card"><a href="https://www.geeksforgeeks.org/machine-learning/machine-learning/" target="_blank">Machine Learning – GFG</a></div>
+        <div class="card"><a href="https://www.geeksforgeeks.org/data-science/data-science-for-beginners/" target="_blank">Data Science for Beginners – GFG</a></div>
+        <div class="card"><a href="https://www.geeksforgeeks.org/javascript/javascript-tutorial/" target="_blank">JavaScript Tutorial – GFG</a></div>
+        <div class="card"><a href="https://www.geeksforgeeks.org/web-tech/web-technology/" target="_blank">Web Technology – GFG</a></div>
+    </div>
+
+</div>
+
+<!-- JavaScript Search Logic -->
+<script>
+function searchCards() {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(searchValue) ? "block" : "none";
+    });
+}
+
+// Press Enter to search
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        searchCards();
+    }
+});
+</script>
+
+{% endblock blockname %}

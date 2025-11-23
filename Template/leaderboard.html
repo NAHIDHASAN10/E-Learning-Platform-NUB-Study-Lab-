@@ -1,0 +1,7 @@
+<h2>{{ quiz.title }} - Leaderboard</h2>
+
+<ol>
+{% for a in attempts %}
+    <li>{{ a.user.username }} — {{ a.percentage }}%</li>
+{% endfor %}
+</ol>

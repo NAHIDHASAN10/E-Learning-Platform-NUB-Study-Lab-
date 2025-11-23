@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block blockname %}
+
+<style>
+/* ------------------ Global ------------------ */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Search bar */
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.search-btn {
+    padding: 12px 18px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Cards Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+/* Individual Card */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #1e3a8a;
+    font-weight: bold;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<div class="container">
+
+    <h1>Develop your skills</h1>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search tutorials...">
+        <button class="search-btn" onclick="searchCards()">Search</button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="card-grid" id="cardGrid">
+        <div class="card"><a href="https://uniathena.com/short-courses/basics-of-digital-marketing?utm_source=Google&utm_medium=Conversion&utm_campaign=GO-EXL-UNI-240223-CNV-SC-2300-SCR&utm_page=Login&utm_pos=/" target="_blank">Basics of Digital Marketing</a></div>
+        <div class="card"><a href="https://uniathena.com/short-courses/python-for-data-science-machine-learning?utm_source=Google&utm_medium=Conversion&utm_campaign=GO-EXL-UNI-240223-CNV-SC-2300-SCR&utm_page=Login&utm_pos=" target="_blank">Python for Data Science & Machine Learning</a></div>
+        <div class="card"><a href="https://uniathena.com/short-courses/basics-of-excel-spreadsheet-workbook?utm_source=Google&utm_medium=Conversion&utm_campaign=GO-EXL-UNI-240223-CNV-SC-2300-SCR&utm_page=Login&utm_pos=" target="_blank">Basics of Excel Spreadsheet & Workbook</a></div>
+        <div class="card"><a href="https://uniathena.com/short-courses/fundamentals-of-english-grammar?utm_source=Google&utm_medium=Conversion&utm_campaign=GO-EXL-UNI-240223-CNV-SC-2300-SCR&utm_page=Login&utm_pos=" target="_blank">Fundamentals of English Grammar</a></div>
+        <div class="card"><a href="https://www.coursera.org/specializations/graphic-design" target="_blank">Graphic Design Specialization</a></div>
+        <div class="card"><a href="https://www.udemy.com/topic/video-editing/free/?utm_campaign=Search_Keyword_Beta_Prof_la.DE_cc.ROW-German&utm_source=google&utm_medium=paid-search&portfolio=ROW-German&utm_audience=mx&utm_tactic=nb&utm_term=video%20editing%20course&utm_content=g&funnel=&test=&gad_source=1&gad_campaignid=21485730605&gbraid=0AAAAADROdO2luzyMarhyXAFAY5QBtGJIN&gclid=EAIaIQobChMIuqafyOiFkQMViKRmAh1kfAtTEAAYASAAEgKQcfD_BwE" target="_blank">Free Video Editing Courses and Tutorials</a></div>
+        
+    </div>
+
+</div>
+
+<!-- JavaScript Search Logic -->
+<script>
+function searchCards() {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(searchValue) ? "block" : "none";
+    });
+}
+
+// Press Enter to search
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        searchCards();
+    }
+});
+</script>
+
+{% endblock blockname %}
